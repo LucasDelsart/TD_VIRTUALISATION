@@ -110,15 +110,12 @@ def on_creation_vm_button():
         messagebox.showwarning("Entrée manquante", "Veuillez remplir tous les champs.")
 
 def display_fields(choice):
-    # Cache tous les champs avant d'afficher les nouveaux
     for widget in frame.winfo_children():
         widget.grid_forget()
 
-    # Titre "Menu"
     label_method.grid(row=0, column=0, columnspan=2, pady=10)
     menu.grid(row=1, column=0, columnspan=2)
 
-    # Affiche les champs selon le choix
     if choice == "cloner":
         label_template.grid(row=2, column=0, pady=5)
         entry_template.grid(row=2, column=1, pady=5)
@@ -153,21 +150,17 @@ root.title("Gestion des Machines Virtuelles")
 frame = tk.Frame(root)
 frame.pack(padx=200, pady=100)
 
-# Titre "Menu"
 label_method = tk.Label(frame, text="Menu")
 
-# Menu déroulant
 programme_var = tk.StringVar()
 programme_var.set("")
 
 menu = tk.OptionMenu(frame, programme_var, "cloner", "import_ova", "create_vm", command=on_menu_change)
 
-# Boutons
 button_clonage = tk.Button(frame, text="Clonage", command=on_clonage_button)
 button_import_ova = tk.Button(frame, text="Importer OVA", command=on_import_ova_button)
 button_creation_vm = tk.Button(frame, text="Créer une VM", command=on_creation_vm_button)
 
-# Champs d'entrée
 label_template = tk.Label(frame, text="Nom du modèle:")
 label_new_name = tk.Label(frame, text="Nom du nouveau fichier:")
 label_ova = tk.Label(frame, text="Chemin du fichier OVA:")
@@ -186,7 +179,6 @@ entry_ram_size = tk.Entry(frame)
 entry_cpu_count = tk.Entry(frame)
 entry_disk_size = tk.Entry(frame)
 
-# Initialiser l'affichage
 display_fields("")
 
 root.mainloop()
